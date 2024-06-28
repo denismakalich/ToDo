@@ -7,7 +7,7 @@ using ToDo.Inftrastructure.Context;
 
 namespace ToDo.Inftrastructure.Repositories;
 
-public class TaskItemRepository : ITaskItemRepository
+internal sealed class TaskItemRepository : ITaskItemRepository
 {
     private readonly ApplicationDbContext _context;
 

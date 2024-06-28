@@ -1,6 +1,6 @@
 namespace ToDo.Domain.Entities.Enums;
 
-public enum Status
+public enum Status: byte
 {
     None,
     New,

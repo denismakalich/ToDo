@@ -3,7 +3,7 @@ using ToDo.Inftrastructure.Context;
 
 namespace ToDo.Inftrastructure.Repositories;
 
-public class TenantRepository : ITenant
+internal sealed class TenantRepository : ITenant
 {
     private readonly ApplicationDbContext _context;
     public ITaskItemRepository TaskItems { get; }
