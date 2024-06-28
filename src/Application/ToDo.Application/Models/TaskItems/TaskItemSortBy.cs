@@ -4,5 +4,6 @@ public enum TaskItemSortBy
 {
     None,
     Priority,
-    Date
+    CreatedOn,
+    ModifiedOn
 }
