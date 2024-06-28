@@ -14,9 +14,9 @@ public class TaskItemCustomizations : ICustomization
         var priority = fixture.Create<int>();
         var status = fixture.Create<Status>();
         var createdOn = fixture.Create<DateTimeOffset>();
-        var modifiedOn = fixture.Create<DateTimeOffset>();
+        var userId = fixture.Create<Guid>();
 
         fixture.Customize<TaskItem>(composer =>
-            composer.FromFactory(() => new TaskItem(id, title, description, 0, Status.New, createdOn, modifiedOn)));
+            composer.FromFactory(() => new TaskItem(id, title, description, 0, Status.New, createdOn, userId)));
     }
 }

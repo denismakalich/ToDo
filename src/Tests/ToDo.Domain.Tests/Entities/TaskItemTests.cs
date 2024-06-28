@@ -20,10 +20,10 @@ public class TaskItemTests
         var priority = 0;
         var status = _fixture.Create<Status>();
         var createdOn = _fixture.Create<DateTimeOffset>();
-        var modifiedOn = _fixture.Create<DateTimeOffset>();
+        var userId = _fixture.Create<Guid>();
 
         // Act
-        var task = new TaskItem(id, title, description, priority, status, createdOn, modifiedOn);
+        var task = new TaskItem(id, title, description, priority, status, createdOn, userId);
 
         // Assert
         task.Id.Should().Be(id);
@@ -32,7 +32,7 @@ public class TaskItemTests
         task.Priority.Should().Be(priority);
         task.Status.Should().Be(status);
         task.CreatedOn.Should().Be(createdOn);
-        task.ModifiedOn.Should().Be(modifiedOn);
+        task.UserId.Should().Be(userId);
     }
 
     [Fact]
@@ -45,10 +45,10 @@ public class TaskItemTests
         var priority = 0;
         var status = _fixture.Create<Status>();
         var createdOn = _fixture.Create<DateTimeOffset>();
-        var modifiedOn = _fixture.Create<DateTimeOffset>();
+        var userId = _fixture.Create<Guid>();
 
         // Act
-        var action = () => new TaskItem(id, title, description, priority, status, createdOn, modifiedOn);
+        var action = () => new TaskItem(id, title, description, priority, status, createdOn, userId);
 
         // Assert
         action.Should()
@@ -64,9 +64,10 @@ public class TaskItemTests
         var description = _fixture.Create<string>();
         var priority = 0;
         var status = _fixture.Create<Status>();
+        var userId = _fixture.Create<Guid>();
 
         // Act
-        var task = TaskItem.Create(title, description, priority, status);
+        var task = TaskItem.Create(title, description, priority, status, userId);
 
         // Assert
         task.Id.Should().NotBeEmpty();
@@ -74,6 +75,7 @@ public class TaskItemTests
         task.Description.Should().Be(description);
         task.Priority.Should().Be(priority);
         task.Status.Should().Be(status);
+        task.UserId.Should().Be(userId);
     }
 
     [Theory]
@@ -139,5 +141,20 @@ public class TaskItemTests
         action.Should()
             .Throw<ArgumentException>()
             .WithParameterName(nameof(status));
+    }
+    
+    [Theory]
+    [InlineData("00000000-0000-0000-0000-000000000000")]
+    public void SetUserId_IsNullOrWhiteSpace_ThrowsArgumentException(Guid userId)
+    {
+        // Arange
+        var taskItem = _fixture.Create<TaskItem>();
+
+        // Act
+        var action = () => taskItem.SetUser(userId);
+
+        action.Should()
+            .Throw<ArgumentException>()
+            .WithParameterName(nameof(userId));
     }
 }

@@ -1,5 +1,6 @@
 using AutoFixture;
 using ToDo.Domain.Tests.Customizations;
+using ToDo.Domain.Tests.Entities;
 
 namespace ToDo.Domain.Tests.Extensions;
 
