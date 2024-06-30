@@ -13,7 +13,7 @@ using ToDo.Contracts.TaskItems.Response;
 namespace ToDo.WebAPI.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("api/tasks")]
 [Authorize]
 public class TaskItemController : ControllerBase
 {
@@ -28,7 +28,7 @@ public class TaskItemController : ControllerBase
         _logger = logger;
     }
 
-    [HttpPost("Create", Name = "CreateTaskItem")]
+    [HttpPost("create", Name = "CreateTaskItem")]
     public async Task<IActionResult> Create([FromBody] CreateTaskItemRequest request,
         CancellationToken cancellationToken)
     {
@@ -48,7 +48,7 @@ public class TaskItemController : ControllerBase
         }
     }
 
-    [HttpGet("Get/{id:guid}", Name = "GetTaskItem")]
+    [HttpGet("get/{id:guid}", Name = "GetTaskItem")]
     public async Task<IActionResult> Get(Guid id, CancellationToken cancellationToken)
     {
         try
@@ -68,7 +68,7 @@ public class TaskItemController : ControllerBase
         }
     }
 
-    [HttpPost("Search", Name = "SearchTaskItems")]
+    [HttpGet("search", Name = "SearchTaskItems")]
     public async Task<IActionResult> Search([FromBody] SearchTaskItemRequest request,
         CancellationToken cancellationToken)
     {
@@ -89,7 +89,7 @@ public class TaskItemController : ControllerBase
         }
     }
 
-    [HttpPut("Update/{id:guid}", Name = "UpdateTaskItem")]
+    [HttpPut("update/{id:guid}", Name = "UpdateTaskItem")]
     public async Task<IActionResult> Update(Guid id, [FromBody] UpdateTaskItemRequest request,
         CancellationToken cancellationToken)
     {
@@ -110,7 +110,7 @@ public class TaskItemController : ControllerBase
         }
     }
 
-    [HttpDelete("Delete/{id:guid}", Name = "DeleteTaskItem")]
+    [HttpDelete("delete/{id:guid}", Name = "DeleteTaskItem")]
     public async Task<IActionResult> Delete(Guid id, CancellationToken cancellationToken)
     {
         try

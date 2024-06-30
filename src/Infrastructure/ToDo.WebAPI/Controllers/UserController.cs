@@ -1,10 +1,6 @@
 using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Threading;
-using System.Threading.Tasks;
 using ToDo.Application.Users.GetUserById;
 using ToDo.Application.Users.LoginUser;
 using ToDo.Application.Users.RegisterUser;
@@ -15,7 +11,7 @@ using ToDo.WebAPI.Tools;
 namespace ToDo.WebAPI.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/users")]
     public class UserController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -29,7 +25,7 @@ namespace ToDo.WebAPI.Controllers
             _logger = logger;
         }
 
-        [HttpPost("Register", Name = "RegisterUser")]
+        [HttpPost("register", Name = "RegisterUser")]
         public async Task<IActionResult> Register([FromBody] RegisterUserRequest request,
             CancellationToken cancellationToken)
         {
@@ -53,7 +49,7 @@ namespace ToDo.WebAPI.Controllers
             }
         }
 
-        [HttpPost("Login", Name = "LoginUser")]
+        [HttpPost("login", Name = "LoginUser")]
         public async Task<IActionResult> Login([FromBody] LoginUserRequest request, CancellationToken cancellationToken)
         {
             _logger.LogInformation("User login attempt...");

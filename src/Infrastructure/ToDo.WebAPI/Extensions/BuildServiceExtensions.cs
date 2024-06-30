@@ -23,7 +23,7 @@ public static class BuildServiceExtensions
                 Name = "Authorization",
                 Type = SecuritySchemeType.Http,
                 BearerFormat = "JWT",
-                Scheme = "baerer"
+                Scheme = "bearer"
             });
             opt.AddSecurityRequirement(new OpenApiSecurityRequirement
             {
