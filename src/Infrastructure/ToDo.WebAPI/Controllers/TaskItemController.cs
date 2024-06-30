@@ -69,7 +69,7 @@ public class TaskItemController : ControllerBase
     }
 
     [HttpGet("search", Name = "SearchTaskItems")]
-    public async Task<IActionResult> Search([FromBody] SearchTaskItemRequest request,
+    public async Task<IActionResult> Search([FromQuery] SearchTaskItemRequest request,
         CancellationToken cancellationToken)
     {
         try
@@ -90,13 +90,13 @@ public class TaskItemController : ControllerBase
     }
 
     [HttpPut("update/{id:guid}", Name = "UpdateTaskItem")]
-    public async Task<IActionResult> Update(Guid id, [FromBody] UpdateTaskItemRequest request,
+    public async Task<IActionResult> Update(Guid id, [FromForm] UpdateTaskItemRequest request,
         CancellationToken cancellationToken)
     {
         try
         {
             var command = _mapper.Map<UpdateTaskItemCommand>(request);
-            command = command with { Id = id };
+            command.Id = id;
             await _mediator.Send(command, cancellationToken);
             
             _logger.LogInformation("Task item updated successfully.");
