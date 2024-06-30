@@ -9,7 +9,7 @@ using ToDo.Contracts.TaskItems.Request;
 using ToDo.Contracts.TaskItems.Response;
 using ToDo.Domain.Entities;
 
-namespace ToDo.Inftrastructure.MappingProfiles;
+namespace ToDo.WebAPI.MappingProfiles;
 
 public class TaskItemMappingProfile : Profile
 {
@@ -24,10 +24,10 @@ public class TaskItemMappingProfile : Profile
         CreateMap<SearchTaskItemRequest, SearchTaskItemByFilterQuery>()
             .ForMember(dest => dest.Filter,
                 opt => opt.MapFrom(src =>
-                    new SearchTaskItemFilter(src.Page, src.PageSize, src.Status, src.SortBy)))
+                    new SearchTaskItemFilter(src.Page, src.PageSize, src.Status, src.UserId, src.SortBy)))
             .ConvertUsing(src =>
                 new SearchTaskItemByFilterQuery(
-                    new SearchTaskItemFilter(src.Page, src.PageSize, src.Status, src.SortBy)));
+                    new SearchTaskItemFilter(src.Page, src.PageSize, src.Status, src.UserId, src.SortBy)));
 
         CreateMap<IEnumerable<TaskItem>, SearchTaskItemResponse>()
             .ConvertUsing((src, _, context) =>

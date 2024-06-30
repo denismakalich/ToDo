@@ -16,7 +16,7 @@ internal sealed class UserRepository : IUserRepository
         _context = context;
     }
 
-    public Task CreateAsync(User user, CancellationToken cancellationToken = default)
+    public Task CreateAsync(User? user, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(user);
 
@@ -43,5 +43,13 @@ internal sealed class UserRepository : IUserRepository
             return null;
 
         return await _context.Users.SingleOrDefaultAsync(u => u.Id == user.Id);
+    }
+
+    public async Task<User?> GetUserById(Guid id, CancellationToken cancellationToken)
+    {
+        if (id == Guid.Empty)
+            throw new ArgumentException("Id can't be empty");
+
+        return await _context.Users.SingleOrDefaultAsync(u => u.Id == id, cancellationToken);
     }
 }

@@ -3,4 +3,4 @@ using ToDo.Domain.Entities.Enums;
 
 namespace ToDo.Contracts.TaskItems.Request;
 
-public record SearchTaskItemRequest(int Page, int PageSize, Status Status, TaskItemSortBy SortBy);
+public record SearchTaskItemRequest(int Page, int PageSize, Status Status, Guid UserId, TaskItemSortBy SortBy);

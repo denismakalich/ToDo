@@ -43,5 +43,9 @@ public class TaskItemConfiguration : IEntityTypeConfiguration<TaskItem>
                 v => v.UtcDateTime,
                 v => new DateTimeOffset(v, TimeSpan.Zero)
             );
+
+        builder.Property(t => t.UserId)
+            .HasColumnName("user_id")
+            .IsRequired();
     }
 }

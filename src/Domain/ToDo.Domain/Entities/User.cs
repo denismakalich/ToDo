@@ -31,7 +31,7 @@ public class User
         SetPassword(password);
     }
 
-    public static User Create(string email, string password)
+    public static User? Create(string email, string password)
     {
         Guid id = Guid.NewGuid();
 

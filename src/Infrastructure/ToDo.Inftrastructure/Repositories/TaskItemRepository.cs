@@ -57,6 +57,8 @@ internal sealed class TaskItemRepository : ITaskItemRepository
             taskItems = taskItems.Where(t => t.Status == filter.Status);
         }
 
+        taskItems = taskItems.Where(t => t.UserId == filter.UserId);
+
         taskItems = filter.SortBy switch
         {
             TaskItemSortBy.Priority => taskItems.OrderBy(t => t.Priority),

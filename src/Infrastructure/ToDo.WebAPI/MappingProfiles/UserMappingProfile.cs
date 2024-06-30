@@ -5,7 +5,7 @@ using ToDo.Contracts.Users.Request;
 using ToDo.Contracts.Users.Response;
 using ToDo.Domain.Entities;
 
-namespace ToDo.Inftrastructure.MappingProfiles;
+namespace ToDo.WebAPI.MappingProfiles;
 
 public class UserMappingProfile : Profile
 {

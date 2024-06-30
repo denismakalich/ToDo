@@ -3,7 +3,7 @@ using ToDo.Inftrastructure.Context;
 
 namespace ToDo.Inftrastructure.Repositories;
 
-internal sealed class TenantFactoryRepository : ITenantFactory
+public sealed class TenantFactoryRepository : ITenantFactory
 {
     private readonly Lazy<ITenant> _tenant;
 
