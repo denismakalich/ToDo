@@ -19,5 +19,10 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
         builder.Property(u => u.PasswordHash)
             .HasColumnName("passwordHash")
             .IsRequired();
+
+        builder.HasData(new List<User>
+        {
+            new User(Guid.Parse("1F0CA162-4C04-4C2F-BBDA-86A91F6D1768"), "admin@mail.ru", "adminPassword")
+        });
     }
 }

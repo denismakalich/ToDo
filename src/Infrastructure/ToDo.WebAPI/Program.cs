@@ -57,4 +57,12 @@ app.MapControllers();
 app.UseExceptionHandler();
 app.UseAuthorizationAndAuthentication();
 
+if (builder.Configuration.GetValue<bool>("AutoMigrations"))
+{
+    using var scope = app.Services.CreateScope();
+    var scopedServices = scope.ServiceProvider;
+    var context = scopedServices.GetRequiredService<ApplicationDbContext>();
+    context.Database.Migrate();
+}
+
 app.Run();

@@ -61,6 +61,19 @@ namespace ToDo.Inftrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("task_items", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("e944e01b-e0b5-4df6-8400-ec64f2c52bc2"),
+                            CreatedOn = new DateTime(2024, 7, 1, 20, 19, 6, 853, DateTimeKind.Utc).AddTicks(6955),
+                            Description = "test some descriptions",
+                            ModifiedOn = new DateTime(2024, 7, 1, 20, 19, 6, 853, DateTimeKind.Utc).AddTicks(7049),
+                            Priority = 10,
+                            Status = (byte)1,
+                            Title = "testing title",
+                            UserId = new Guid("1f0ca162-4c04-4c2f-bbda-86a91f6d1768")
+                        });
                 });
 
             modelBuilder.Entity("ToDo.Domain.Entities.User", b =>
@@ -89,6 +102,16 @@ namespace ToDo.Inftrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("users", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("1f0ca162-4c04-4c2f-bbda-86a91f6d1768"),
+                            Email = "admin@mail.ru",
+                            NormalizedEmail = "ADMIN@MAIL.RU",
+                            PasswordHash = "BBvXOSMA973cWH1tPgNqZ6rJgLyDXp3/mwhPv0p+EosYyuttP/B6p17KyHIUeNvcmDudHgrleqp/tNCNFekDvg==",
+                            Salt = "BOYxetCaoZfHflOZj6CvW+thpkFZoAfN0DQM7KXDVcJ5aZ6o+qOhTQbT1qWzwavP9X6dxJLP2RoXPTtD676JFSDsCUyWSdFh/+DkFvCSmjqvlxqQk7bbJ+W13Gej1NMXDjGybDxc9SYH+j59LHLbE9WLt9mE+FRUieULHWzg37Y="
+                        });
                 });
 #pragma warning restore 612, 618
         }
